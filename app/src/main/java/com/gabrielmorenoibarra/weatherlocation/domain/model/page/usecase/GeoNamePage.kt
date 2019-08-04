@@ -9,5 +9,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class GeoNamePage(
-        @SerializedName(GeoNameKeys.ITEMS_NAME) var items: List<GeoName> = emptyList()
+    @SerializedName(GeoNameKeys.ITEMS_NAME) var items: List<GeoName> = emptyList()
 ) : Page(), Parcelable
