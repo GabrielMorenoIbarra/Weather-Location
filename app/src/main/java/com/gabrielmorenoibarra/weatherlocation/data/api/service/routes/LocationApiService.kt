@@ -14,7 +14,7 @@ interface LocationApiService {
         private const val ITEMS = Keys.ITEMS
         private const val EXTENDED = Keys.EXTENDED
 
-        private const val URL_SCENES = LocationKeys.URL_SCENES
+        private const val URL_SCENES = LocationKeys.URL_LOCATION
 
         private const val QUERY_LOCATION = LocationKeys.QUERY_LOCATION
     }
