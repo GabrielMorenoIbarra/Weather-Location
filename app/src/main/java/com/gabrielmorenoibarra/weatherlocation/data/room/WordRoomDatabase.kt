@@ -40,11 +40,11 @@ abstract class WordRoomDatabase : RoomDatabase() {
             : RoomDatabase.Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
-                instance?.let { database ->
-                    scope.launch {
-                        populateDatabase(database.wordDao())
-                    }
-                }
+//                instance?.let { database ->
+//                    scope.launch {
+//                        populateDatabase(database.wordDao())
+//                    }
+//                }
             }
         }
 

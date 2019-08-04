@@ -48,21 +48,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:visibility="gone"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorSecondaryLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clSearch">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistoric"
             style="@style/MatchParent"
-            android:background="@android:color/darker_gray"
             tools:listitem="@layout/item_historic"/>
-
-        <!--<fragment-->
-            <!--android:id="@+id/fHistoric"-->
-            <!--android:name="HistoricFragment"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:layout="@layout/fragment_historic"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
