@@ -9,8 +9,8 @@ import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.response.GeoName
 import com.gabrielmorenoibarra.weatherlocation.framework.project.util.rv.LocationRvManager
 import kotlinx.android.synthetic.main.fragment_locations.*
+import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.tv_no_results.*
-import org.jetbrains.anko.support.v4.toast
 
 class LocationsFragment : BaseFragment() {
 
@@ -32,9 +32,8 @@ class LocationsFragment : BaseFragment() {
     }
 
     private fun initRvm() {
-        rvm = LocationRvManager(rv, srl, tvNoResults, "") {
+        rvm = LocationRvManager(rv, srl, tvNoResults, pb, "") {
             val geoName = it
-            toast(geoName.asciiName) // TODO
             listener?.invoke(geoName)
         }
     }

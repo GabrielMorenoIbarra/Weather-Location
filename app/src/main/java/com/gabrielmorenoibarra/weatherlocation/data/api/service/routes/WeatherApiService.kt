@@ -23,10 +23,10 @@ interface WeatherApiService {
     }
 
     @GET(BASE_PATH)
-    fun get(@Query(QUERY_NORTH) north: Float,
-            @Query(QUERY_SOUTH) south: Float,
-            @Query(QUERY_EAST) east: Float,
-            @Query(QUERY_WEST) west: Float,
+    fun get(@Query(QUERY_NORTH) north: Double,
+            @Query(QUERY_SOUTH) south: Double,
+            @Query(QUERY_EAST) east: Double,
+            @Query(QUERY_WEST) west: Double,
             @Query(QUERY_USERNAME) username: String,
             @Query(PAGE) nPage: Int,
             @Query(ITEMS) nItems: Int

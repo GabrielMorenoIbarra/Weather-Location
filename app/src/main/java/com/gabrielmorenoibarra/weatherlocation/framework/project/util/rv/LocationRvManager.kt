@@ -1,6 +1,7 @@
 package com.gabrielmorenoibarra.weatherlocation.framework.project.util.rv
 
 import android.view.View
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.gabrielmorenoibarra.generic.util.manager.BaseRvManager
@@ -14,9 +15,10 @@ import com.gabrielmorenoibarra.weatherlocation.ui.adapter.rv.LocationAdapter
 class LocationRvManager(rv: RecyclerView,
                         srl: SwipeRefreshLayout,
                         vNoResults: View,
+                        pb: ProgressBar? = null,
                         query: String,
                         private val listener: (GeoName) -> Unit) :
-        BaseRvManager<GeoName>(rv, srl, R.drawable.divider_vertical_1dp_s20, vNoResults, query = query) {
+        BaseRvManager<GeoName>(rv, srl, R.drawable.divider_vertical_1dp_s20, vNoResults, pb, query = query) {
 
     override fun createAdapter(items: List<GeoName>): LocationAdapter {
         return LocationAdapter(items.toMutableList(), listener)
