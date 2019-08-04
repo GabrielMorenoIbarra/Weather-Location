@@ -3,7 +3,7 @@ package com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.data.api.manager.routes.WeatherApiManager
 import com.gabrielmorenoibarra.weatherlocation.domain.model.page.usecase.WeatherObservationPage
-import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Coordinate
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Coordinate
 import com.gabrielmorenoibarra.weatherlocation.framework.project.converter.usecase.toWeatherObservationPage
 import com.gabrielmorenoibarra.weatherlocation.framework.project.util.logAndShowError
 
@@ -11,8 +11,6 @@ class WeatherApiParser {
 
     fun get(coordinate: Coordinate,
             username: String,
-            nPage: Int,
-            nItems: Int,
             listener: (WeatherObservationPage) -> Unit) {
         val north = coordinate.north
         val south = coordinate.south
@@ -24,8 +22,6 @@ class WeatherApiParser {
                 east,
                 west,
                 username,
-                nPage,
-                nItems,
                 success = {
                     val page = it.toWeatherObservationPage()
                     listener(page)

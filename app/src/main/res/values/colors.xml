@@ -28,6 +28,10 @@
     <color name="white">@color/s10</color>
     <color name="black">@android:color/black</color>
 
+    <color name="temperature_cold">#252850</color>
+    <color name="temperature_medium">#008F39</color>
+    <color name="temperature_hot">#F44611</color>
+
     <color name="colorPrimary_alpha_90">#e6607D8B</color>
     <color name="colorPrimary_alpha_80">#cc607D8B</color>
     <color name="colorPrimary_alpha_70">#b3607D8B</color>

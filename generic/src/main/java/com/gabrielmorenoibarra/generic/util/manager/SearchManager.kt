@@ -39,9 +39,9 @@ class SearchManager(private val et: EditText,
             ib.visible()
         }
         if (sTrimmed.isEmpty() || sTrimmed.length < CHARS_SEARCH_LENGTH) {
-//            showProgressBar(false)
+            showProgressBar(false)
         } else if (sTrimmed.length >= CHARS_SEARCH_LENGTH) {
-//            showProgressBar(true)
+            showProgressBar(true)
         }
         searchHandler.postDelayed(searchRunnable, 500)
     }

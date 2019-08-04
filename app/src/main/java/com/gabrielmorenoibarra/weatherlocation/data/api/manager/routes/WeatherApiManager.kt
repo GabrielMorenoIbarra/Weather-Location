@@ -11,13 +11,11 @@ class WeatherApiManager : ApiManager() {
 
     private val apiService = ApiClient.get().create(WeatherApiService::class.java)
 
-    fun get(north: Float,
-            south: Float,
-            east: Float,
-            west: Float,
+    fun get(north: Double,
+            south: Double,
+            east: Double,
+            west: Double,
             username: String,
-            nPage: Int,
-            nItems: Int,
             success: Success<JsonElement>,
             failure: Failure) {
         enqueue(apiService.get(
@@ -25,9 +23,7 @@ class WeatherApiManager : ApiManager() {
                 south,
                 east,
                 west,
-                username,
-                nPage,
-                nItems),
+                username),
                 onComplete(success, failure))
     }
 }
