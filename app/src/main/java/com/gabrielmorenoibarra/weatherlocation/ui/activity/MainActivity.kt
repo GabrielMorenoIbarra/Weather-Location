@@ -1,15 +1,12 @@
 package com.gabrielmorenoibarra.weatherlocation.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gabrielmorenoibarra.generic.util.KLog
-import com.gabrielmorenoibarra.weatherlocation.App
 import com.gabrielmorenoibarra.weatherlocation.BuildConfig
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.LocationApiParser
