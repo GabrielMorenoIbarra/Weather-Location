@@ -64,7 +64,7 @@ class PaginationManager<T>(private val rv: RecyclerView,
     }
 
     fun reset() {
-        nPage = 1
+        nPage = 0
         load()
     }
 
@@ -81,7 +81,7 @@ class PaginationManager<T>(private val rv: RecyclerView,
         vNoResults?.showNoResultsPerform(nPage, items)
         hasMoreItems = items.size >= maxPerPage
 
-        if (nPage == 1) {
+        if (nPage == 0) {
             listener.populate(items)
         } else if (items.isNotEmpty()) {
             listener.addItems(items)

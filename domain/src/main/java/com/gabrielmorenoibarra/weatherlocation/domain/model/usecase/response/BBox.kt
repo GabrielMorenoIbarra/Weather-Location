@@ -4,9 +4,10 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class GeoName(
-        var asciiName: String,
-        var bBox: BBox,
-        var lat: String,
-        var lng: String
+data class BBox(
+    val north: Float,
+    val south: Float,
+    val east: Float,
+    val west: Float,
+    val accuracyLevel: Int
 ) : Parcelable

@@ -35,6 +35,6 @@ class LocationRvManager(rv: RecyclerView,
 
     fun load(s: String) {
         query = s
-        load()
+        reset()
     }
 }
