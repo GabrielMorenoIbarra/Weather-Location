@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Weather Location</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="error_loading_location">Error loading location</string>
+
+    <string name="error_loading_locations">Error loading locations</string>
 </resources>
