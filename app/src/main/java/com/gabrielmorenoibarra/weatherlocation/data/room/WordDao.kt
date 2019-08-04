@@ -1,11 +1,11 @@
-package com.gabrielmorenoibarra.weatherlocation.data
+package com.gabrielmorenoibarra.weatherlocation.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gabrielmorenoibarra.weatherlocation.domain.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 
 @Dao
 interface WordDao {

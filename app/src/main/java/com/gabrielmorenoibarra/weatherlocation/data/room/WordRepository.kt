@@ -1,7 +1,7 @@
-package com.gabrielmorenoibarra.weatherlocation.data
+package com.gabrielmorenoibarra.weatherlocation.data.room
 
 import androidx.lifecycle.LiveData
-import com.gabrielmorenoibarra.weatherlocation.domain.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 
 class WordRepository(private val wordDao: WordDao) {
 

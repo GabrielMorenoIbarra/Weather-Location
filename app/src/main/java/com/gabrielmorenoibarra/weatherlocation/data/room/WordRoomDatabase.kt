@@ -1,11 +1,11 @@
-package com.gabrielmorenoibarra.weatherlocation.data
+package com.gabrielmorenoibarra.weatherlocation.data.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.gabrielmorenoibarra.weatherlocation.domain.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
