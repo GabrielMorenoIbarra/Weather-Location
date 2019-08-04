@@ -61,9 +61,13 @@ class MainActivity
     fun initFragments() {
         locationFragment = supportFragmentManager.findFragmentById(R.id.fLocations) as LocationsFragment
         locationFragment.setListener {
-            wordViewModel.insert(Word(it))
+            saveToHistoric(it)
         }
 //        historicFragment = // TODO
+    }
+
+    fun saveToHistoric(s: String) {
+        wordViewModel.insert(Word(s))
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -123,7 +127,9 @@ class MainActivity
     }
 
     private fun initAdapter(): WordListAdapter {
-        val adapter = WordListAdapter(this)
+        val adapter = WordListAdapter(this) {
+            fetch(it)
+        }
         rvHistoric.adapter = adapter
         rvHistoric.layoutManager = LinearLayoutManager(this)
         return adapter
