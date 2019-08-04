@@ -17,15 +17,15 @@ package com.gabrielmorenoibarra.weatherlocation
  */
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 
 class WordListAdapter internal constructor(
-        context: Context
+    context: Context
 ) : RecyclerView.Adapter<WordListAdapter.WordViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
