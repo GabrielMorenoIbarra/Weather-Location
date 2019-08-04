@@ -6,7 +6,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.gabrielmorenoibarra.generic.extension.isConnected
 import com.gabrielmorenoibarra.generic.extension.view.gone
 import com.gabrielmorenoibarra.generic.extension.view.hideKeyboard
@@ -15,8 +14,9 @@ import com.gabrielmorenoibarra.generic.util.manager.SearchManager
 import com.gabrielmorenoibarra.weatherlocation.BuildConfig
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.WeatherApiParser
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Coordinate
 import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
-import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Coordinate
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.response.WeatherObservation
 import com.gabrielmorenoibarra.weatherlocation.ui.adapter.WordListAdapter
 import com.gabrielmorenoibarra.weatherlocation.ui.fragment.LocationsFragment
 import com.gabrielmorenoibarra.weatherlocation.viewmodel.WordViewModel
@@ -28,9 +28,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_search.*
-import kotlinx.android.synthetic.main.progress_bar.*
+import kotlinx.android.synthetic.main.pb_circular.*
 import kotlinx.android.synthetic.main.tv_no_results.*
-import org.jetbrains.anko.longToast
 
 class MainActivity
     : AppCompatActivity()
@@ -50,20 +49,26 @@ class MainActivity
         setContentView(R.layout.activity_main)
         initFragments()
         initGoogleMap()
+        setTemperature(33)
         initClSearch()
         initTvCancel()
         val adapter = initAdapter()
         initViewModel(adapter)
-
-//        showDemoInfo()
     }
 
     fun initFragments() {
         locationFragment = supportFragmentManager.findFragmentById(R.id.fLocations) as LocationsFragment
         locationFragment.setListener {
-            saveToHistoric(it)
+            val geoName = it
+            val name = geoName.asciiName
+            saveToHistoric(name)
+            val latitude = geoName.lat.toDouble()
+            val longitude = geoName.lng.toDouble()
+            val latLng = LatLng(latitude, longitude)
+            mapPerform(latLng)
+            val coordinate = geoName.coordinate
+            loadTemperature(coordinate)
         }
-//        historicFragment = // TODO
     }
 
     fun saveToHistoric(s: String) {
@@ -73,12 +78,22 @@ class MainActivity
     override fun onMapReady(googleMap: GoogleMap?) {
         googleMap?.let {
             this.googleMap = it
-
-            // Add a marker in Sydney and move the camera
-            val sydney = LatLng(-34.0, 151.0)
-            this.googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-            this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+            val latLng = LatLng(40.4165, -3.70256)
+            mapPerform(latLng)
         }
+    }
+
+    private fun mapPerform(latLng: LatLng) {
+        addMarker(latLng)
+        moveCamera(latLng)
+    }
+
+    private fun addMarker(latLng: LatLng) {
+        googleMap.addMarker(MarkerOptions().position(latLng).title(getString(R.string.you_are_here)))
+    }
+
+    private fun moveCamera(latLng: LatLng) {
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
     }
 
     private fun initGoogleMap() {
@@ -128,7 +143,7 @@ class MainActivity
 
     private fun initAdapter(): WordListAdapter {
         val adapter = WordListAdapter(this) {
-            fetch(it)
+            et.setText(it)
         }
         rvHistoric.adapter = adapter
         rvHistoric.layoutManager = LinearLayoutManager(this)
@@ -147,7 +162,6 @@ class MainActivity
         val connected = isConnected()
         if (connected) {
             if (s.trim().isEmpty() && etHasFocus) {
-//                fetchHistoric()
                 showHistoricPerform()
             } else {
                 hideHistoricPerform()
@@ -156,21 +170,50 @@ class MainActivity
         }
     }
 
-    private fun showDemoInfo() {
-        if (BuildConfig.DEBUG) {
-            val north = 44.1f
-            val south = -9.9f
-            val east = -22.4f
-            val west = 55.2f
-            val coordinate = Coordinate(north, south, east, west)
-            WeatherApiParser().get(
-                coordinate,
-                BuildConfig.USERNAME_IL_GEONAMES_SAMPLE,
-                0, 20
-            ) {
-                val message = it.toString()
-                longToast(message)
+    private fun loadTemperature(coordinate: Coordinate?) {
+        coordinate?.let {
+            WeatherApiParser().get(coordinate, BuildConfig.USERNAME_IL_GEONAMES_SAMPLE) {
+                val page = it
+                val items = page.items
+                val temperature = calculateTemperature(items)
+                setTemperature(temperature)
             }
+        }
+    }
+
+    private fun calculateTemperature(items: List<WeatherObservation>): Int? {
+        return if (items.isNotEmpty()) {
+            var sum = 0
+            items.forEach {
+                sum += it.temperature.toFloat().toInt()
+            }
+            sum / items.size
+        } else null
+    }
+
+    private fun setTemperature(temperature: Int?) {
+        setTvTemperature(temperature)
+        setCpbTemperature(temperature)
+    }
+
+    private fun setTvTemperature(temperature: Int?) {
+        tvTemperature.text = if (temperature != null) {
+            String.format(getString(R.string.n_degrees), temperature)
+        } else ""
+    }
+
+    private fun setCpbTemperature(temperature: Int?) {
+        setCpbTemperatureColor(temperature)
+        cpb.progressAnimationDuration = 100L
+        val progress = temperature?.toFloat() ?: 0F
+        cpb.progress = progress
+    }
+
+    private fun setCpbTemperatureColor(temperature: Int?) {
+        when (temperature) {
+            in Int.MIN_VALUE..10 -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_cold)
+            in 11..24 -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_medium)
+            in 25..Int.MAX_VALUE -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_hot)
         }
     }
 }
