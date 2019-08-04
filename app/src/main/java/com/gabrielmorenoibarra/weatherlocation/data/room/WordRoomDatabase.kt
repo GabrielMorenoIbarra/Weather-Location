@@ -1,4 +1,4 @@
-package com.gabrielmorenoibarra.weatherlocation.data
+package com.gabrielmorenoibarra.weatherlocation.data.room
 
 import android.content.Context
 import androidx.room.Database

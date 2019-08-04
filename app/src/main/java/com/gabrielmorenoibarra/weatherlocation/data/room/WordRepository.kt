@@ -1,4 +1,4 @@
-package com.gabrielmorenoibarra.weatherlocation.data
+package com.gabrielmorenoibarra.weatherlocation.data.room
 
 import androidx.lifecycle.LiveData
 import com.gabrielmorenoibarra.weatherlocation.domain.Word

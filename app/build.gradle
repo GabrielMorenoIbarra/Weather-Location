@@ -24,6 +24,24 @@ android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
+
+    final SERVER_DIMENSION = "server"
+    flavorDimensions SERVER_DIMENSION
+    productFlavors {
+        development {
+            dimension SERVER_DIMENSION
+            applicationIdSuffix ".development"
+            versionNameSuffix "-development"
+            buildConfigField "String", "URL_BASE", "\"http://api.geonames.org/\""
+            resConfigs "en"
+//            signingConfig signingConfigs.config // TODO: This would be added
+        }
+        production {
+            dimension SERVER_DIMENSION
+            buildConfigField "String", "URL_BASE", "\"http://api.geonames.org/\"" // TODO: This would be changed
+//            signingConfig signingConfigs.config // TODO: This would be added
+        }
+    }
 }
 
 dependencies {
@@ -53,4 +71,14 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    implementation 'com.github.grapesnberries:curlloggerinterceptor:0.1'
+
+    implementation 'com.gabrielmorenoibarra.g:g:0.9.0'
 }

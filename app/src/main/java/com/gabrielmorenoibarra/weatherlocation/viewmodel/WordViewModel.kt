@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.gabrielmorenoibarra.weatherlocation.data.WordRepository
-import com.gabrielmorenoibarra.weatherlocation.data.WordRoomDatabase
+import com.gabrielmorenoibarra.weatherlocation.data.room.WordRepository
+import com.gabrielmorenoibarra.weatherlocation.data.room.WordRoomDatabase
 import com.gabrielmorenoibarra.weatherlocation.domain.Word
 import kotlinx.coroutines.launch
 
