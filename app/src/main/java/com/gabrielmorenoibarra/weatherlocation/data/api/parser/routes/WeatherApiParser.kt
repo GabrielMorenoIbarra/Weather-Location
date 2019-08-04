@@ -10,6 +10,7 @@ import com.gabrielmorenoibarra.weatherlocation.framework.project.util.logAndShow
 class WeatherApiParser {
 
     fun get(coordinate: Coordinate,
+            username: String,
             nPage: Int,
             nItems: Int,
             listener: (WeatherObservationPage) -> Unit) {
@@ -17,7 +18,6 @@ class WeatherApiParser {
         val south = coordinate.south
         val east = coordinate.east
         val west = coordinate.west
-        val username = coordinate.username
         WeatherApiManager().get(
                 north,
                 south,

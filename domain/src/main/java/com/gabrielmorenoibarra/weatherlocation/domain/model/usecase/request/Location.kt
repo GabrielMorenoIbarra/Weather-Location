@@ -7,9 +7,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Location(
-        var name: String,
-        var language: String = LocationKeys.LANGUAGE_EN,
-        var nameRequired: Boolean = true,
-        var style: String = LocationKeys.STYLE_FULL,
-        var username: String = Keys.USERNAME_IL_GEONAMES_SAMPLE
+        val name: String,
+        val language: String = LocationKeys.LANGUAGE_EN,
+        val nameRequired: Boolean = true,
+        val style: String = LocationKeys.STYLE_FULL
 ) : Parcelable

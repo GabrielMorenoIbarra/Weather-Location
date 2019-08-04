@@ -10,6 +10,7 @@ import com.gabrielmorenoibarra.weatherlocation.framework.project.util.logAndShow
 class LocationApiParser {
 
     fun get(location: Location,
+            username: String,
             nPage: Int,
             nItems: Int,
             listener: (GeoNamePage) -> Unit) {
@@ -17,7 +18,6 @@ class LocationApiParser {
         val language = location.language
         val nameRequired = location.nameRequired
         val style = location.style
-        val username = location.username
         LocationApiManager().get(
                 name,
                 language,
