@@ -9,6 +9,13 @@ fun Exception?.log() {
     this?.printStackTrace()
 }
 
+fun Int.logAndShowError() {
+    val app = App.instance
+    val s = app.getString(this)
+    app.longToast(s)
+    KLog.e(s)
+}
+
 fun String.logError() {
     if (BuildConfig.DEBUG) {
         App.instance.longToast(this)

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.gabrielmorenoibarra.weatherlocation.domain.model.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

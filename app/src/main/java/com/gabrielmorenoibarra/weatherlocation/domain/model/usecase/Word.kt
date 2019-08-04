@@ -1,4 +1,4 @@
-package com.gabrielmorenoibarra.weatherlocation.domain.model
+package com.gabrielmorenoibarra.weatherlocation.domain.model.usecase
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
