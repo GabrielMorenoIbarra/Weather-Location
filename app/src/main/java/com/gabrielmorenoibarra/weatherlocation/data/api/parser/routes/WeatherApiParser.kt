@@ -11,8 +11,6 @@ class WeatherApiParser {
 
     fun get(coordinate: Coordinate,
             username: String,
-            nPage: Int,
-            nItems: Int,
             listener: (WeatherObservationPage) -> Unit) {
         val north = coordinate.north
         val south = coordinate.south
@@ -24,8 +22,6 @@ class WeatherApiParser {
                 east,
                 west,
                 username,
-                nPage,
-                nItems,
                 success = {
                     val page = it.toWeatherObservationPage()
                     listener(page)

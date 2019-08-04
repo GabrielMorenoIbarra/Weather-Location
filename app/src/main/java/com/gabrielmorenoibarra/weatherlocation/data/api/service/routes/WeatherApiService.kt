@@ -10,9 +10,6 @@ import retrofit2.http.Query
 interface WeatherApiService {
 
     companion object {
-        private const val PAGE = Keys.PAGE
-        private const val ITEMS = Keys.ITEMS
-
         private const val BASE_PATH = WeatherKeys.BASE_PATH
 
         private const val QUERY_NORTH = WeatherKeys.QUERY_NORTH
@@ -27,8 +24,6 @@ interface WeatherApiService {
             @Query(QUERY_SOUTH) south: Double,
             @Query(QUERY_EAST) east: Double,
             @Query(QUERY_WEST) west: Double,
-            @Query(QUERY_USERNAME) username: String,
-            @Query(PAGE) nPage: Int,
-            @Query(ITEMS) nItems: Int
+            @Query(QUERY_USERNAME) username: String
     ): Call<JsonElement>
 }

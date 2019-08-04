@@ -31,8 +31,7 @@ private fun check() {
     val coordinate = Coordinate(north, south, east, west, accuracyLevel)
     WeatherApiParser().get(
             coordinate,
-            BuildConfig.USERNAME_IL_GEONAMES_SAMPLE,
-            0, 20) {
+            BuildConfig.USERNAME_IL_GEONAMES_SAMPLE) {
         KLog.d("$it")
     }
 }

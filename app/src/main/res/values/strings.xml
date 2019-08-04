@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Weather Location</string>
 
+    <string name="n_degrees">%1$sº</string>
+
     <string name="error_loading_locations">Error loading locations</string>
     <string name="error_loading_temperatures">Error loading temperatures</string>
 

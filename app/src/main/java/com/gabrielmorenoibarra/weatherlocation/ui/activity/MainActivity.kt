@@ -11,8 +11,12 @@ import com.gabrielmorenoibarra.generic.extension.view.gone
 import com.gabrielmorenoibarra.generic.extension.view.hideKeyboard
 import com.gabrielmorenoibarra.generic.extension.view.visible
 import com.gabrielmorenoibarra.generic.util.manager.SearchManager
+import com.gabrielmorenoibarra.weatherlocation.BuildConfig
 import com.gabrielmorenoibarra.weatherlocation.R
+import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.WeatherApiParser
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Coordinate
 import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.response.WeatherObservation
 import com.gabrielmorenoibarra.weatherlocation.ui.adapter.WordListAdapter
 import com.gabrielmorenoibarra.weatherlocation.ui.fragment.LocationsFragment
 import com.gabrielmorenoibarra.weatherlocation.viewmodel.WordViewModel
@@ -24,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_search.*
+import kotlinx.android.synthetic.main.pb_circular.*
 import kotlinx.android.synthetic.main.tv_no_results.*
 
 class MainActivity
@@ -44,6 +49,7 @@ class MainActivity
         setContentView(R.layout.activity_main)
         initFragments()
         initGoogleMap()
+        setTemperature(33)
         initClSearch()
         initTvCancel()
         val adapter = initAdapter()
@@ -59,7 +65,9 @@ class MainActivity
             val latitude = geoName.lat.toDouble()
             val longitude = geoName.lng.toDouble()
             val latLng = LatLng(latitude, longitude)
-            goToPlace(latLng)
+            mapPerform(latLng)
+            val coordinate = geoName.coordinate
+            loadTemperature(coordinate)
         }
     }
 
@@ -70,15 +78,22 @@ class MainActivity
     override fun onMapReady(googleMap: GoogleMap?) {
         googleMap?.let {
             this.googleMap = it
-
             val latLng = LatLng(40.4165, -3.70256)
-            this.googleMap.addMarker(MarkerOptions().position(latLng).title(getString(R.string.you_are_here)))
-            goToPlace(latLng)
+            mapPerform(latLng)
         }
     }
 
-    private fun goToPlace(latLng: LatLng) {
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+    private fun mapPerform(latLng: LatLng) {
+        addMarker(latLng)
+        moveCamera(latLng)
+    }
+
+    private fun addMarker(latLng: LatLng) {
+        googleMap.addMarker(MarkerOptions().position(latLng).title(getString(R.string.you_are_here)))
+    }
+
+    private fun moveCamera(latLng: LatLng) {
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
     }
 
     private fun initGoogleMap() {
@@ -153,5 +168,43 @@ class MainActivity
                 locationFragment.populate(s)
             }
         }
+    }
+
+    private fun loadTemperature(coordinate: Coordinate?) {
+        coordinate?.let {
+            WeatherApiParser().get(coordinate, BuildConfig.USERNAME_IL_GEONAMES_SAMPLE) {
+                val page = it
+                val items = page.items
+                val temperature = calculateTemperature(items)
+                setTemperature(temperature)
+            }
+        }
+    }
+
+    private fun calculateTemperature(items: List<WeatherObservation>): Int? {
+        return if (items.isNotEmpty()) {
+            var sum = 0
+            items.forEach {
+                sum += it.temperature.toInt()
+            }
+            sum / items.size
+        } else null
+    }
+
+    private fun setTemperature(temperature: Int?) {
+        setTvTemperature(temperature)
+        setCpbTemperature(temperature)
+    }
+
+    private fun setTvTemperature(temperature: Int?) {
+        tvTemperature.text = if (temperature != null) {
+            String.format(getString(R.string.n_degrees), temperature)
+        } else ""
+    }
+
+    private fun setCpbTemperature(temperature: Int?) {
+        cpb.progressAnimationDuration = 100L
+        val progress = temperature?.toFloat() ?: 0F
+        cpb.progress = progress
     }
 }

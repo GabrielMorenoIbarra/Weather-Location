@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class GeoName(
         var asciiName: String,
-        @SerializedName("bBox") var coordinate: Coordinate,
+        @SerializedName("bbox") var coordinate: Coordinate?,
         var lat: String,
         var lng: String
 ) : Parcelable

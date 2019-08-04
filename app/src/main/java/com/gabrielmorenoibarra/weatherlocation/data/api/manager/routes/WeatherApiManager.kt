@@ -16,8 +16,6 @@ class WeatherApiManager : ApiManager() {
             east: Double,
             west: Double,
             username: String,
-            nPage: Int,
-            nItems: Int,
             success: Success<JsonElement>,
             failure: Failure) {
         enqueue(apiService.get(
@@ -25,9 +23,7 @@ class WeatherApiManager : ApiManager() {
                 south,
                 east,
                 west,
-                username,
-                nPage,
-                nItems),
+                username),
                 onComplete(success, failure))
     }
 }
