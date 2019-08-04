@@ -22,7 +22,7 @@ import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import com.gabrielmorenoibarra.weatherlocation.data.room.WordDao
 import com.gabrielmorenoibarra.weatherlocation.data.room.WordRoomDatabase
-import com.gabrielmorenoibarra.weatherlocation.domain.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.Word
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking

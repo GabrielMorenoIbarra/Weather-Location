@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gabrielmorenoibarra.weatherlocation.R
-import com.gabrielmorenoibarra.weatherlocation.domain.Word
+import com.gabrielmorenoibarra.weatherlocation.domain.model.Word
 
 
 class WordListAdapter internal constructor(context: Context)
