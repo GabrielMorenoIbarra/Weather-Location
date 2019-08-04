@@ -40,4 +40,8 @@
             android:background="@android:color/darker_gray"
             tools:listitem="@layout/recyclerview_item"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/tv_no_results"/>
+
+    <include layout="@layout/progress_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

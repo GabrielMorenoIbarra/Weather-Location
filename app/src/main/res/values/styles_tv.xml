@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="Tv" parent="WrapContent">
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+
+    <style name="Tv.22">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="Tv.22.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Tv.22.Bold.colorSecondaryDark">
+        <item name="android:textColor">@color/colorSecondaryDark</item>
+    </style>
+</resources>
