@@ -30,8 +30,10 @@ android {
     productFlavors {
         development {
             dimension SERVER_DIMENSION
-            applicationIdSuffix ".development"
-            versionNameSuffix "-development"
+            // TODO: Those suffixes could be added after. Now are commented for using the debug Google Maps API key
+//            applicationIdSuffix ".development"
+//            versionNameSuffix "-development"
+
             buildConfigField "String", "URL_BASE", "\"http://api.geonames.org/\""
             resConfigs "en"
 //            signingConfig signingConfigs.config // TODO: This would be added
