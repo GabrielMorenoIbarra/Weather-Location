@@ -185,7 +185,7 @@ class MainActivity
         return if (items.isNotEmpty()) {
             var sum = 0
             items.forEach {
-                sum += it.temperature.toInt()
+                sum += it.temperature.toFloat().toInt()
             }
             sum / items.size
         } else null
@@ -203,8 +203,17 @@ class MainActivity
     }
 
     private fun setCpbTemperature(temperature: Int?) {
+        setCpbTemperatureColor(temperature)
         cpb.progressAnimationDuration = 100L
         val progress = temperature?.toFloat() ?: 0F
         cpb.progress = progress
+    }
+
+    private fun setCpbTemperatureColor(temperature: Int?) {
+        when (temperature) {
+            in Int.MIN_VALUE..10 -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_cold)
+            in 11..24 -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_medium)
+            in 25..Int.MAX_VALUE -> cpb.foregroundStrokeColor = resources.getColor(R.color.temperature_hot)
+        }
     }
 }

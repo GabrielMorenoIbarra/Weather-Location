@@ -65,6 +65,7 @@ class PaginationManager<T>(private val rv: RecyclerView,
 
     fun reset() {
         nPage = 0
+        hasMoreItems = true
         load()
     }
 
