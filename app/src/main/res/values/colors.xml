@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorPrimary">@color/t60_primary</color>
+    <color name="colorPrimaryAlpha">@color/colorPrimary_alpha_30</color>
+    <color name="colorPrimaryDark">@color/t80_primary_dark</color>
+    <color name="colorPrimaryLight">@color/t40_primary_light</color>
+    <color name="colorSecondary">@color/s80_secondary</color>
+    <color name="colorSecondaryDark">@color/s60_secondary_dark</color>
+    <color name="colorSecondaryLight">@color/s40_secondary_light</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+
+    <color name="t80_primary_dark">#455A64</color>
+    <color name="t60_primary">#607D8B</color>
+    <color name="t40_primary_light">#CFD8DC</color>
+
+    <color name="s80_secondary">#212121</color>
+    <color name="s70">#343947</color>
+    <color name="s60_secondary_dark">#464c5c</color>
+    <color name="s50">#637381</color>
+    <color name="s40_secondary_light">#919eab</color>
+    <color name="s30_secondary_lighter">#dbe2e8</color>
+    <color name="s20">#f4f6f8</color>
+    <color name="s10">#ffffff</color>
+
+    <color name="white">@color/s10</color>
+    <color name="black">@android:color/black</color>
+
+    <color name="colorPrimary_alpha_90">#e6607D8B</color>
+    <color name="colorPrimary_alpha_80">#cc607D8B</color>
+    <color name="colorPrimary_alpha_70">#b3607D8B</color>
+    <color name="colorPrimary_alpha_60">#99607D8B</color>
+    <color name="colorPrimary_alpha_50">#80607D8B</color>
+    <color name="colorPrimary_alpha_40">#66607D8B</color>
+    <color name="colorPrimary_alpha_30">#4d607D8B</color>
+    <color name="colorPrimary_alpha_20">#33607D8B</color>
+    <color name="colorPrimary_alpha_10">#1a607D8B</color>
 </resources>
