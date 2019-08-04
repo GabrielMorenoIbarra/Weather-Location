@@ -20,6 +20,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
+import com.gabrielmorenoibarra.weatherlocation.data.WordDao
+import com.gabrielmorenoibarra.weatherlocation.data.WordRoomDatabase
+import com.gabrielmorenoibarra.weatherlocation.domain.Word
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
