@@ -2,4 +2,9 @@
     <string name="app_name">Weather Location</string>
 
     <string name="error_loading_locations">Error loading locations</string>
+    <string name="error_loading_temperatures">Error loading temperatures</string>
+
+    <string name="search_location">Search location…</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_results">No results</string>
 </resources>

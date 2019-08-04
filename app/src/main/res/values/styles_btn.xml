@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="BtnTv" parent="WrapContent">
+        <item name="android:background">@null</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="BtnTv.10">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BtnTv.10.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BtnTv.10.Bold.SecondaryDark">
+        <item name="android:textColor">@color/colorSecondaryDark</item>
+    </style>
+</resources>
