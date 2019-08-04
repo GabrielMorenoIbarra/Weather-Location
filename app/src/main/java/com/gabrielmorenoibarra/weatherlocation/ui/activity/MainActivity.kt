@@ -2,6 +2,7 @@ package com.gabrielmorenoibarra.weatherlocation.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+class MainActivity
+    : AppCompatActivity()
+    , OnMapReadyCallback, LifecycleOwner {
 
     private lateinit var wordViewModel: WordViewModel
     private lateinit var googleMap: GoogleMap
