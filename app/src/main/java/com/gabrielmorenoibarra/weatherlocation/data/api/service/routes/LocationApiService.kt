@@ -12,15 +12,22 @@ interface LocationApiService {
     companion object {
         private const val PAGE = Keys.PAGE
         private const val ITEMS = Keys.ITEMS
-        private const val EXTENDED = Keys.EXTENDED
 
         private const val URL_LOCATION = LocationKeys.URL_LOCATION
 
-        private const val QUERY_LOCATION = LocationKeys.QUERY_LOCATION
+        private const val QUERY_NAME = LocationKeys.QUERY_NAME
+        private const val QUERY_LANG = LocationKeys.QUERY_LANG
+        private const val QUERY_NAME_REQUIRED = LocationKeys.QUERY_NAME_REQUIRED
+        private const val QUERY_STYLE = LocationKeys.QUERY_STYLE
+        private const val QUERY_USERNAME = LocationKeys.QUERY_USERNAME
     }
 
     @GET(URL_LOCATION)
-    fun getLocation(@Query(EXTENDED) extended: String,
+    fun getLocation(@Query(QUERY_NAME) name: String,
+                    @Query(QUERY_LANG) language: String,
+                    @Query(QUERY_NAME_REQUIRED) nameRequired: Boolean,
+                    @Query(QUERY_STYLE) style: String,
+                    @Query(QUERY_USERNAME) username: String,
                     @Query(PAGE) nPage: Int,
                     @Query(ITEMS) nItems: Int
     ): Call<JsonElement>

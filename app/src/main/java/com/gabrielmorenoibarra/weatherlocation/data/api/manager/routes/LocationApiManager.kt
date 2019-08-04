@@ -11,12 +11,23 @@ class LocationApiManager : ApiManager() {
 
     private val apiService = ApiClient.get().create(LocationApiService::class.java)
 
-    fun getLocation(extended: String,
+    fun getLocation(name: String,
+                    language: String,
+                    nameRequired: Boolean,
+                    style: String,
+                    username: String,
                     nPage: Int,
                     nItems: Int,
                     success: Success<JsonElement>,
                     failure: Failure) {
-        enqueue(apiService.getLocation(extended, nPage, nItems),
+        enqueue(apiService.getLocation(
+                name,
+                language,
+                nameRequired,
+                style,
+                username,
+                nPage,
+                nItems),
                 onComplete(success, failure))
     }
 }
