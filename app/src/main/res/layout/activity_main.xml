@@ -27,18 +27,45 @@
         app:layout_constraintTop_toBottomOf="@id/clSearch"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clResults"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintHeight_percent="0.7"
         app:layout_constraintTop_toBottomOf="@id/googleMap">
 
+        <fragment
+            android:id="@+id/fLocations"
+            android:name="com.gabrielmorenoibarra.weatherlocation.ui.fragment.LocationsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_locations"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
             tools:listitem="@layout/recyclerview_item"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHistoric"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clSearch">
+
+        <!--<fragment-->
+            <!--android:id="@+id/fHistoric"-->
+            <!--android:name="HistoricFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:layout="@layout/fragment_historic"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include layout="@layout/tv_no_results"/>
