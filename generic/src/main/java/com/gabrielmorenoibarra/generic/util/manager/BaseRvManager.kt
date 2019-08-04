@@ -14,7 +14,7 @@ abstract class BaseRvManager<T>(protected val rv: RecyclerView,
                                 private val vNoResults: View? = null,
                                 private val pb: ProgressBar? = null,
                                 protected val id: Long = -1,
-                                protected val query: String = "",
+                                protected var query: String = "",
                                 private val orientation: Int = PaginationManager.ORIENTATION_VERTICAL,
                                 private val maxPerPage: Int = 10) {
 

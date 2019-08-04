@@ -68,7 +68,7 @@ fun View.showNoResultsPerform(nPage: Int, vararg lists: List<*>): Boolean {
             return false
         }
     }
-    if (nPage == 1) {
+    if (nPage == 0) {
         visible()
     }
     return true

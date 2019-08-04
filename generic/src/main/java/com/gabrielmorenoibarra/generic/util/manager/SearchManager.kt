@@ -11,7 +11,7 @@ import com.gabrielmorenoibarra.generic.extension.view.visible
 
 class SearchManager(private val et: EditText,
                     val ib: ImageButton,
-                    private val pb: ProgressBar,
+                    private val pb: ProgressBar? = null,
                     listener: (String) -> Unit) {
 
     companion object {
@@ -39,9 +39,9 @@ class SearchManager(private val et: EditText,
             ib.visible()
         }
         if (sTrimmed.isEmpty() || sTrimmed.length < CHARS_SEARCH_LENGTH) {
-            showProgressBar(false)
+//            showProgressBar(false)
         } else if (sTrimmed.length >= CHARS_SEARCH_LENGTH) {
-            showProgressBar(true)
+//            showProgressBar(true)
         }
         searchHandler.postDelayed(searchRunnable, 500)
     }
@@ -51,5 +51,5 @@ class SearchManager(private val et: EditText,
         listener(s)
     }
 
-    fun showProgressBar(show: Boolean) = if (show) pb.visible() else pb.gone()
+    fun showProgressBar(show: Boolean) = if (show) pb?.visible() else pb?.gone()
 }

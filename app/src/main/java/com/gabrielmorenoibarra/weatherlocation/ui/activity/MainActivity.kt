@@ -14,11 +14,11 @@ import com.gabrielmorenoibarra.generic.extension.view.visible
 import com.gabrielmorenoibarra.generic.util.manager.SearchManager
 import com.gabrielmorenoibarra.weatherlocation.BuildConfig
 import com.gabrielmorenoibarra.weatherlocation.R
-import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.LocationApiParser
 import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.WeatherApiParser
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Coordinate
-import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Location
 import com.gabrielmorenoibarra.weatherlocation.ui.adapter.WordListAdapter
+import com.gabrielmorenoibarra.weatherlocation.ui.fragment.LocationsFragment
 import com.gabrielmorenoibarra.weatherlocation.viewmodel.WordViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,6 +39,8 @@ class MainActivity
     private lateinit var wordViewModel: WordViewModel
     private lateinit var googleMap: GoogleMap
 
+    private lateinit var locationFragment: LocationsFragment
+
     private var etHasFocus = false
     private var showNoResults = false
     private var showHistoric = true
@@ -46,7 +48,7 @@ class MainActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        initFragments()
         initGoogleMap()
         initClSearch()
         initTvCancel()
@@ -54,6 +56,14 @@ class MainActivity
         initViewModel(adapter)
 
 //        showDemoInfo()
+    }
+
+    fun initFragments() {
+        locationFragment = supportFragmentManager.findFragmentById(R.id.fLocations) as LocationsFragment
+        locationFragment.setListener {
+            wordViewModel.insert(Word(it))
+        }
+//        historicFragment = // TODO
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -73,8 +83,7 @@ class MainActivity
     }
 
     private fun initClSearch() {
-        SearchManager(et, ib, pb) { s ->
-            //            searchTypeProductionsFragment.onSearchInputChanged(s)
+        SearchManager(et, ib) { s ->
             fetch(s)
         }
 
@@ -114,10 +123,9 @@ class MainActivity
     }
 
     private fun initAdapter(): WordListAdapter {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = WordListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        rvHistoric.adapter = adapter
+        rvHistoric.layoutManager = LinearLayoutManager(this)
         return adapter
     }
 
@@ -137,28 +145,9 @@ class MainActivity
                 showHistoricPerform()
             } else {
                 hideHistoricPerform()
-                val nPage = 0
-                val name = "Madrid" // FIXME: Replace this
-                val location = Location(name)
-                LocationApiParser().get(
-                    location, BuildConfig.USERNAME_IL_GEONAMES_SAMPLE,
-                    nPage, 20
-                ) {
-                    //                    val productionsSubList = sublist(productions)
-//                    showHidePerform(searchTypeProductionsFragment, productionsSubList) {
-//                        searchTypeProductionsFragment.populate(SearchActivity.TYPE_PRODUCTIONS, productionsSubList) {
-//                            fetchHistoric()
-//                        }
-//                    }
-//                    showNoResults = tvNoResults?.showNoResultsPerform(nPage, productionsSubList, moviesSubList, accountsSubList) ?: false
-                    showProgressBar(false)
-                }
+                locationFragment.populate(s)
             }
         }
-    }
-
-    fun showProgressBar(show: Boolean) {
-        if (show) pb.visible() else pb.gone()
     }
 
     private fun showDemoInfo() {

@@ -40,14 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_locations"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            tools:listitem="@layout/recyclerview_item"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +52,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clSearch">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistoric"
+            style="@style/MatchParent"
+            android:background="@android:color/darker_gray"
+            tools:listitem="@layout/item_historic"/>
+
         <!--<fragment-->
             <!--android:id="@+id/fHistoric"-->
             <!--android:name="HistoricFragment"-->
@@ -67,8 +65,4 @@
             <!--android:layout_height="wrap_content"-->
             <!--tools:layout="@layout/fragment_historic"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include layout="@layout/tv_no_results"/>
-
-    <include layout="@layout/progress_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

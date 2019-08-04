@@ -10,7 +10,7 @@ import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Loca
 class ManualTest {
 
     init {
-        check()
+//        check()
     }
 }
 

@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tv"
-        style="@style/Tv.15"
+        style="@style/Tv.15.SecondaryLight"
         android:layout_width="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"

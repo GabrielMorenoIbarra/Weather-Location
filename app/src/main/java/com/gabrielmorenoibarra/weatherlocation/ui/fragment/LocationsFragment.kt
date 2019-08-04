@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.gabrielmorenoibarra.generic.ui.view.fragment.BaseFragment
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.framework.project.util.rv.LocationRvManager
 import kotlinx.android.synthetic.main.fragment_locations.*
 import kotlinx.android.synthetic.main.tv_no_results.*
 import org.jetbrains.anko.support.v4.toast
 
-class LocationsFragment : Fragment() {
-
-    companion object {
-        fun newInstance(): LocationsFragment = LocationsFragment()
-    }
+class LocationsFragment : BaseFragment() {
 
     private lateinit var rvm: LocationRvManager
 
@@ -28,12 +24,23 @@ class LocationsFragment : Fragment() {
         initRvm()
     }
 
-    private fun initRvm() {
-        rvm = LocationRvManager(rv, srl, tvNoResults) {
-            val notification = it
+    private var listener: ((String) -> Unit)? = null
 
-            toast("Item pressed") // TODO
+    fun setListener(listener: (String) -> Unit) {
+        this.listener = listener
+    }
+
+    private fun initRvm() {
+        rvm = LocationRvManager(rv, srl, tvNoResults, "") {
+            val geoName = it
+            toast(geoName.asciiName) // TODO
+            listener?.invoke(geoName.asciiName)
         }
-        rvm.load()
+    }
+
+    fun populate(s: String) {
+        doWhenViewCreated {
+            rvm.load(s)
+        }
     }
 }

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Word
 
-
 class WordListAdapter internal constructor(context: Context)
     : RecyclerView.Adapter<WordListAdapter.WordViewHolder>() {
 
@@ -17,11 +16,11 @@ class WordListAdapter internal constructor(context: Context)
     private var words = emptyList<Word>() // Cached copy of words
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wordItemView: TextView = itemView.findViewById(R.id.textView)
+        val wordItemView: TextView = itemView.findViewById(R.id.tv)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
+        val itemView = inflater.inflate(R.layout.item_historic, parent, false)
         return WordViewHolder(itemView)
     }
 

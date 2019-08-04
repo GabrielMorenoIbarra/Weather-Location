@@ -14,17 +14,16 @@ import com.gabrielmorenoibarra.weatherlocation.ui.adapter.rv.LocationAdapter
 class LocationRvManager(rv: RecyclerView,
                         srl: SwipeRefreshLayout,
                         vNoResults: View,
+                        query: String,
                         private val listener: (GeoName) -> Unit) :
-        BaseRvManager<GeoName>(rv, srl, R.drawable.divider_vertical_1dp_s20, vNoResults) {
+        BaseRvManager<GeoName>(rv, srl, R.drawable.divider_vertical_1dp_s20, vNoResults, query = query) {
 
     override fun createAdapter(items: List<GeoName>): LocationAdapter {
         return LocationAdapter(items.toMutableList(), listener)
     }
 
     override fun get(nPage: Int, nItems: Int, listener: (List<GeoName>) -> Unit) {
-
-        val name = "Madrid"
-        val location = Location(name)
+        val location = Location(query)
         LocationApiParser().get(location,
                 BuildConfig.USERNAME_IL_GEONAMES_SAMPLE,
                 0, 20) {
@@ -32,5 +31,10 @@ class LocationRvManager(rv: RecyclerView,
             val items = page.items
             listener(items)
         }
+    }
+
+    fun load(s: String) {
+        query = s
+        load()
     }
 }
