@@ -1,4 +1,4 @@
-package com.gabrielmorenoibarra.weatherlocation.data.api.client
+package com.gabrielmorenoibarra.weatherlocation.data.client
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
