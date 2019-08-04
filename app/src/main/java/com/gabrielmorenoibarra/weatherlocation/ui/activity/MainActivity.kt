@@ -143,7 +143,7 @@ class MainActivity
 
     private fun initAdapter(): WordListAdapter {
         val adapter = WordListAdapter(this) {
-            fetch(it)
+            et.setText(it)
         }
         rvHistoric.adapter = adapter
         rvHistoric.layoutManager = LinearLayoutManager(this)
