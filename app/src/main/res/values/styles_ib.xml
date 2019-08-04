@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="IbCircle" parent="WrapContent">
+        <item name="android:background">@drawable/bg_oval_accent_ripple</item>
+        <item name="android:padding">8dp</item>
+    </style>
+</resources>

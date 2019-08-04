@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="LlScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LlScrollView.Divider">
+        <item name="android:divider">@drawable/divider_vertical_4dp_s20</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+</resources>
