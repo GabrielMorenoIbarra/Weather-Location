@@ -38,20 +38,11 @@ class MainActivity
         initViewModel(adapter)
         initGoogleMap()
 
-        showDemoInfo()
+//        showDemoInfo()
     }
 
     private fun showDemoInfo() {
         if (BuildConfig.DEBUG) {
-//            val name = "Madrid"
-//            val location = Location(name)
-//            LocationApiParser().get(
-//                    location,
-//                    BuildConfig.USERNAME_IL_GEONAMES_SAMPLE,
-//                    0, 20) {
-//                val message = it.toString()
-//                longToast(message)
-//            }
             val north = 44.1f
             val south = -9.9f
             val east = -22.4f

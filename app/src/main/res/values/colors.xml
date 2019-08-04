@@ -10,6 +10,8 @@
     <color name="colorSecondaryLight">@color/s40_secondary_light</color>
     <color name="colorAccent">@color/colorPrimary</color>
 
+    <color name="window_background">@color/white</color>
+
     <color name="t80_primary_dark">#455A64</color>
     <color name="t60_primary">#607D8B</color>
     <color name="t40_primary_light">#CFD8DC</color>
