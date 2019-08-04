@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gabrielmorenoibarra.weatherlocation.BuildConfig
 import com.gabrielmorenoibarra.weatherlocation.R
 import com.gabrielmorenoibarra.weatherlocation.data.api.parser.routes.LocationApiParser
-import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.Location
+import com.gabrielmorenoibarra.weatherlocation.domain.model.usecase.request.Location
 import com.gabrielmorenoibarra.weatherlocation.ui.adapter.WordListAdapter
 import com.gabrielmorenoibarra.weatherlocation.viewmodel.WordViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -43,7 +43,7 @@ class MainActivity
         if (BuildConfig.DEBUG) {
             val name = "Madrid"
             val location = Location(name)
-            LocationApiParser().getLocation(location, 0, 20) {
+            LocationApiParser().get(location, 0, 20) {
                 val message = it.toString()
                 longToast(message)
             }

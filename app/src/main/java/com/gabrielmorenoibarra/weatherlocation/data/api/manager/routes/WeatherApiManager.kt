@@ -3,28 +3,28 @@ package com.gabrielmorenoibarra.weatherlocation.data.api.manager.routes
 import com.gabrielmorenoibarra.generic.util.Success
 import com.gabrielmorenoibarra.weatherlocation.data.api.client.usecase.ApiClient
 import com.gabrielmorenoibarra.weatherlocation.data.api.manager.ApiManager
-import com.gabrielmorenoibarra.weatherlocation.data.api.service.routes.LocationApiService
+import com.gabrielmorenoibarra.weatherlocation.data.api.service.routes.WeatherApiService
 import com.gabrielmorenoibarra.weatherlocation.framework.project.util.Failure
 import com.google.gson.JsonElement
 
-class LocationApiManager : ApiManager() {
+class WeatherApiManager : ApiManager() {
 
-    private val apiService = ApiClient.get().create(LocationApiService::class.java)
+    private val apiService = ApiClient.get().create(WeatherApiService::class.java)
 
-    fun get(name: String,
-            language: String,
-            nameRequired: Boolean,
-            style: String,
+    fun get(north: Float,
+            south: Float,
+            east: Float,
+            west: Float,
             username: String,
             nPage: Int,
             nItems: Int,
             success: Success<JsonElement>,
             failure: Failure) {
         enqueue(apiService.get(
-                name,
-                language,
-                nameRequired,
-                style,
+                north,
+                south,
+                east,
+                west,
                 username,
                 nPage,
                 nItems),
