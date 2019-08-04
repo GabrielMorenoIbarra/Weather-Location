@@ -1,7 +1,8 @@
-package com.gabrielmorenoibarra.weatherlocation.data.api.client
+package com.gabrielmorenoibarra.weatherlocation.data.api.client.usecase
 
 import com.gabrielmorenoibarra.weatherlocation.App
 import com.gabrielmorenoibarra.weatherlocation.BuildConfig
+import com.gabrielmorenoibarra.weatherlocation.data.api.client.BaseApiClient
 import com.gabrielmorenoibarra.weatherlocation.framework.project.util.addCache
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Cache

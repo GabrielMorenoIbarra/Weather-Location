@@ -30,7 +30,8 @@ android {
     productFlavors {
         development {
             dimension SERVER_DIMENSION
-            // TODO: Those suffixes could be added after. Now are commented for using the debug Google Maps API key
+            // TODO: Those suffixes could be added after.
+            // TODO: Now is commented for matching with the package name of the debug Google Maps API key
 //            applicationIdSuffix ".development"
 //            versionNameSuffix "-development"
 
@@ -62,6 +63,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'org.jetbrains.anko:anko:0.10.8'
+    implementation "org.jetbrains.anko:anko-design:0.10.8"
 
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
